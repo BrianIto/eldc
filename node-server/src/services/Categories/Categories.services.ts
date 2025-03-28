@@ -18,6 +18,7 @@ const CategoriesService: ICategoriesService = {
   create: (c) => table.create({ data: c }),
   get: (skip, take) => table.findMany({ skip, take }),
   delete: (id) => table.delete({ where: { id } }),
+  exists: (id) => table.findFirst({ where: { id } }),
   isInvalid: (c) => {
     try {
       CategoriesSchema.validateSync(c);

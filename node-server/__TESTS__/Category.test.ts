@@ -1,9 +1,11 @@
 import CategoriesService from "../src/services/Categories/Categories.services";
+import DevicesService from "../src/services/Devices/Devices.services"
 import { PrismaClient } from "@prisma/client";
 
 describe("Run Integration tests using Prisma in The Services of Category Table", () => {
   beforeAll(async () => {
     let prisma = new PrismaClient();
+		await prisma.device.deleteMany({})
     await prisma.category.deleteMany({});
   });
 
@@ -40,7 +42,6 @@ describe("Run Integration tests using Prisma in The Services of Category Table",
     let result = CategoriesService.isInvalid({
       name: new Array(200).fill("a").join(),
     });
-    console.log(result);
     expect(result).toBe("Name must have less than 128 chars");
   });
 });

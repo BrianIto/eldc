@@ -11,7 +11,7 @@ type Create = (
  * @param { number } take - the size of the page.
  * @returns { GetPaginated<Category> } the paginated array of categories.
  */
-type GetPaginated<T> = (
+export type GetPaginated<T> = (
   skip: number,
   take: number,
 ) => Prisma.PrismaPromise<T[]>;
@@ -43,6 +43,14 @@ export interface ICategoriesService {
    * delete(1) // returns { id: 1, name "Category 1" }
    */
   delete: Delete;
+  /**
+   * Check if a category exists, if exists return it,
+   * if not returns undefined
+   * @param { number } id - the id to be searched for;
+   */
+  exists: (
+    id: number,
+  ) => Prisma.Prisma__CategoryClient<Category> | undefined;
   /**
    * check if it's valid of not. If valid returns true, of not returns an error string;
    * @example
