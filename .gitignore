@@ -1,0 +1,5 @@
+node-server/node_modules
+node-server/coverage
+node-server/bun.lock
+node-server/package-lock.json
+node-server/.env
