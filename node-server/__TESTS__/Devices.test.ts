@@ -41,7 +41,6 @@ describe("Tests the Devices Model", () => {
       await request(app).post("/devices/").send(data).expect(400);
     });
 
-
     it("should not create a device if the category created is invalid", async () => {
       let data = {
         color: "red",
@@ -58,11 +57,8 @@ describe("Tests the Devices Model", () => {
       expect(data.body.length).toBeGreaterThan(0);
     });
 
-
     it("should get the devices", async () => {
-      let data = await request(app)
-        .get("/devices")
-        .expect(200);
+      let data = await request(app).get("/devices").expect(200);
       expect(data.body.length).toBeGreaterThan(0);
     });
   });
