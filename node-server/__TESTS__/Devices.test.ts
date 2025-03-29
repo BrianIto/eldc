@@ -1,6 +1,8 @@
+import app from "../src/app";
 import { Category } from "@prisma/client";
 import CategoriesService from "../src/services/Categories/Categories.services";
 import DeviceService from "../src/services/Devices/Devices.services";
+import request from "supertest";
 
 describe("Tests the Devices Model", () => {
   let categories: Category[] = [];
@@ -8,6 +10,61 @@ describe("Tests the Devices Model", () => {
   beforeAll(async () => {
     await CategoriesService.create({ name: "Cat 1" });
     categories = await CategoriesService.get(0, 10);
+  });
+
+  describe("[E2E Tests]", () => {
+    it("should create a device properly with creating a category first", async () => {
+      let category = await CategoriesService.create({ name: "Categoria 1" });
+      let data = {
+        color: "red",
+        partNumber: 234,
+        category: { id: category.id },
+      };
+      await request(app).post("/devices/").send(data).expect(200);
+    });
+
+    it("should create a device properly with creating a category at run", async () => {
+      let data = {
+        color: "red",
+        partNumber: 234,
+        category: { name: "Hello world" },
+      };
+      await request(app).post("/devices/").send(data).expect(200);
+    });
+
+    it("should not create a device if the category doesnt exists", async () => {
+      let data = {
+        color: "red",
+        partNumber: 234,
+        category: { id: 123 },
+      };
+      await request(app).post("/devices/").send(data).expect(400);
+    });
+
+
+    it("should not create a device if the category created is invalid", async () => {
+      let data = {
+        color: "red",
+        partNumber: 234,
+        category: { name: "" },
+      };
+      await request(app).post("/devices/").send(data).expect(400);
+    });
+
+    it("should get the devices", async () => {
+      let data = await request(app)
+        .get("/devices/?pageNumber=1&pageSize=10")
+        .expect(200);
+      expect(data.body.length).toBeGreaterThan(0);
+    });
+
+
+    it("should get the devices", async () => {
+      let data = await request(app)
+        .get("/devices")
+        .expect(200);
+      expect(data.body.length).toBeGreaterThan(0);
+    });
   });
 
   it("[INTEGRATION] should create a device with a specific category", async () => {

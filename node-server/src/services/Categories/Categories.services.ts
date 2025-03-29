@@ -8,14 +8,15 @@ const table = prisma.category;
 let CategoriesSchema = yup.object<Category>({
   name: yup
     .string()
-    .required("This field is required")
+    .required("Name field is required")
+    .trim()
     .min(5, "Name must have more than 5 chars")
     .max(128, "Name must have less than 128 chars"),
   id: yup.number().optional(),
 });
 
 const CategoriesService: ICategoriesService = {
-  create: (c) => table.create({ data: c }),
+  create: (c) => table.create({ data: CategoriesSchema.cast(c) as Category }),
   get: (skip, take) => table.findMany({ skip, take }),
   delete: (id) => table.delete({ where: { id } }),
   exists: (id) => table.findFirst({ where: { id } }),
