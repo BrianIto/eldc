@@ -72,7 +72,11 @@ export class AppComponent implements OnInit {
   }
 
   newDevice(
-    e: Partial<{ partNumber: number; color: string; category: { id: number } }>,
+    e: Partial<{
+      partNumber: number | null | undefined;
+      color: string | null | undefined;
+      category: { id?: number, name?: string } | null | undefined;
+    }>,
   ) {
     this.devicesService
       .create(e)

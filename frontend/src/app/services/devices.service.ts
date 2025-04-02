@@ -25,9 +25,9 @@ export class DevicesService {
 
   create(
     device: Partial<{
-      category: { id: number };
-      partNumber: number;
-      color: string;
+      category: { id?: number, name?: string } | null;
+      partNumber: number | null | undefined;
+      color: string | null | undefined;
     }>,
   ) {
     return this.httpClient.post(this.URL, device);
