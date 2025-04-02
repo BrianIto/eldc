@@ -1,0 +1,24 @@
+<button
+  [type]="type"
+  [class]="buttonClasses + 'enabled:cursor-pointer'"
+  [disabled]="disabled || loading"
+  (click)="onClick($event)"
+>
+  <!-- Leading Icon -->
+  @if (leadingIcon && !loading) {
+    <lucide-icon [img]="leadingIcon" [size]="iconSize" [class]="iconClass + 'mt-0.5'" />
+  }
+
+  <!-- Loading Spinner -->
+  @if (loading) {
+    <lucide-icon [img]="Loader2Icon" [size]="iconSize" class="animate-spin" />
+  }
+
+  <!-- Button Content -->
+  <ng-content />
+
+  <!-- Trailing Icon -->
+  @if (trailingIcon && !loading) {
+    <lucide-icon [img]="trailingIcon" [size]="iconSize" [class]="iconClass" />
+  }
+</button>

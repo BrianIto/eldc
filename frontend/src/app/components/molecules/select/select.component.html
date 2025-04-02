@@ -1,0 +1,27 @@
+<div class="relative">
+  <app-select-button
+    [label]="label"
+    #selectButton
+    [value]="selectedIndex !== undefined ? options[selectedIndex]?.label : ''"
+    [open]="open"
+    (change)="onOpen($event)"
+    (clear)="onClear()"
+    placeholder="Select one option"
+  ></app-select-button>
+  <app-popup #popup class="absolute w-full z-10" [open]="open">
+    <div *ngIf="options.length > 0">
+      <app-select-option
+        *ngFor="let option of options; index as i"
+        [label]="option.label"
+        (select)="onSelect($event, i)"
+        [value]="option.value"
+      />
+    </div>
+    <div
+      *ngIf="options.length === 0"
+      class="my-3 text-white/30 text-white w-full text-center"
+    >
+      <p>There's no options for this select</p>
+    </div>
+  </app-popup>
+</div>

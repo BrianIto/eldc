@@ -1,0 +1,20 @@
+<div>
+  <dialog #dialogNew class="bg-secondary py-6 m-auto rounded-xl px-6 w-lg">
+    <h1 class="text-xl text-white mb-2">New Device</h1>
+    <app-form-device
+      (confirm)="onSubmitNew($event)"
+      (cancel)="onCancelNew()"
+    ></app-form-device>
+  </dialog>
+  <div class="flex items-center">
+    <div class="flex-1 flex flex-col gap-2">
+      <h1 class="text-2xl font-medium">Devices</h1>
+      <p class="text-white/70">List, add and deletes devices below</p>
+    </div>
+    <app-button (clicked)="clickNew()">New Device</app-button>
+  </div>
+  <app-table-device
+    [deviceList]="deviceList"
+    (createFirst)="clickNew()"
+  ></app-table-device>
+</div>

@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+.content-bg {
+  background: linear-gradient(2deg, rgba(32,15,0,1) 0%, rgba(40,40,40,1) 100%);
+}
+
+@theme {
+  --color-primary: #ff9d1c;
+  --color-primary-foreground: #262626;
+  --color-secondary: #262626;
+  --color-secondary-foreground: #FFF;
+  --color-destructive: #ff6969;
+  --color-destructive-foreground: #FFF;
+}

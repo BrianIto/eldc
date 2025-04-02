@@ -1,0 +1,34 @@
+<div class="mb-4 text-white group" [class.error]="errors.length > 0">
+  <label *ngIf="label" class="block text-sm mb-1">
+    <div
+      [ngClass]="[
+        'relative group-[.error]:text-red-400 top-6 h-5 group-focus-within:text-[12px] pointer-events-none duration-200  left-3 group-focus-within:top-1 group-focus-within:left-1.5',
+        value ? '!top-1 !left-1.5 !text-[12px]' : '',
+      ]"
+    >
+      {{ label }}
+      <span *ngIf="required" class="text-red-400">*</span>
+    </div>
+
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [value]="value"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      (input)="onInputChange($event)"
+      (blur)="onTouched()"
+      class="block group-[.error]:!border-red-400 w-full shadow-sm focus:placeholder-white/40 placeholder-transparent focus:border-secondary-foreground duration-200 border-b border-secondary-foreground/50 outline-none py-1.5 px-3 sm:text-sm {{
+        validationClasses
+      }}"
+      [class.bg-gray-100]="disabled"
+    />
+
+    <div
+      *ngIf="showValidation && errors.length > 0"
+      class="mt-1 text-sm text-red-400"
+    >
+      <div *ngFor="let error of errors">{{ error }}</div>
+    </div>
+  </label>
+</div>

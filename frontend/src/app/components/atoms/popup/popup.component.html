@@ -1,0 +1,9 @@
+<div
+  [ngClass]="[
+    'bg-secondary flex flex-col gap-0.5 text-white p-2 shadow-sm rounded-md relative top-2',
+    floating ? 'absolute' : '',
+    open ? 'visible' : 'hidden pointer-events-none',
+  ]"
+>
+  <ng-content />
+</div>

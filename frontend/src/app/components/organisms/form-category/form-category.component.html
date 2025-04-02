@@ -1,0 +1,19 @@
+<form (submit)="onSubmit($event)" [formGroup]="formGroup">
+  <app-input-text
+    formControlName="name"
+    [required]="true"
+    [showValidation]="true"
+    [errorMessages]="{
+      required: 'Name is required',
+    }"
+    placeholder="The name of the new category"
+    label="Name"
+  />
+
+  <div class="flex mt-2 justify-end gap-4">
+    <div class="flex-1">
+    <app-button (clicked)="onCancel()" variant="secondary">Cancel</app-button>
+    </div>
+    <app-button type="submit" [disabled]="formGroup.invalid" [leadingIcon]="CheckIcon">Confirm</app-button>
+  </div>
+</form>

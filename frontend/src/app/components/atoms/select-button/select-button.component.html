@@ -1,0 +1,25 @@
+<button
+  (click)="onChangeOpen(!open)"
+  #buttonRef
+  [class.has-value]="value"
+  [ngClass]="[
+    'flex relative mb-3 gap-2 flex-row text-left enabled:cursor-pointer border-b border-white/40 focus:border-white/90 px-3 text-white bg-foreground w-full py-1.5 group',
+    open ? 'open' : '',
+  ]"
+>
+  <span
+    class="absolute flex-1 absolute group-[.open]:-top-3 group-[.has-value]:-top-3 top-2 left-2 duration-200 group-[.open]:text-[12px] group-[.has-value]:text-[12px] group-[.open]:left-1.5 group-[.has-value]:left-1.5 text-[14px]"
+    >{{ label }}</span
+  >
+  <span
+    class="flex-1 group-[.open]:text-white/50 text-transparent group-[.has-value]:!text-white"
+  >
+    {{ value || placeholder }}
+  </span>
+  <button *ngIf="value" (click)="clearValue($event)" class="text-white/50 hover:text-white hover:bg-white/5 cursor-pointer rounded duration-200">
+    <lucide-icon class="w-5" [img]="XIcon"></lucide-icon>
+  </button>
+  <div class="group-[.open]:rotate-180 duration-200">
+    <lucide-icon [img]="ChevronDownIcon"></lucide-icon>
+  </div>
+</button>

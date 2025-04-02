@@ -1,0 +1,17 @@
+<div>
+  <dialog #dialogNew class="bg-secondary py-6 m-auto rounded-xl px-6 w-lg">
+    <h1 class="text-xl text-white mb-2">New Category</h1>
+    <app-form-category
+      (confirm)="onSubmitNew($event)"
+      (cancel)="onCancelNew()"
+    ></app-form-category>
+  </dialog>
+  <div class="flex items-center">
+    <div class="flex-1 flex flex-col gap-2">
+      <h1 class="text-2xl font-medium">Categories</h1>
+      <p class="text-white/70">List, add and deletes categories below</p>
+    </div>
+    <app-button (clicked)="clickNew()">New Category</app-button>
+  </div>
+  <app-table-category [categoriesList]="categoryList" (createFirst)="clickNew()"></app-table-category>
+</div>
