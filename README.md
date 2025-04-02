@@ -13,6 +13,8 @@ To run frontend:
 
 cd frontend/
 
+npm i
+
 npm run dev
 
 yarn dev
@@ -29,6 +31,8 @@ To run Backend Server:
  -- any node/bun package manager can be used:
 
 cd node-server/
+
+npm i
 
 npm run dev
 
