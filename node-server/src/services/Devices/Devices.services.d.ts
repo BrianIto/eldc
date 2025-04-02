@@ -35,4 +35,11 @@ export interface IDeviceService {
   create: Create;
   delete: Delete;
   isInvalid: (d: Partial<Device>) => string;
+
+  /**
+   * Check if a device exists, if exists return it,
+   * if not returns undefined
+   * @param { number } id - the id to be searched for;
+   */
+  exists: (id: number) => Prisma.Prisma__DeviceClient<Device> | undefined;
 }

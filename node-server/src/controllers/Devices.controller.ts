@@ -43,4 +43,17 @@ DevicesRouter.post("/", async (req, res) => {
   }
 });
 
+DevicesRouter.delete("/:id", async (req, res) => {
+  if (await DeviceService.exists(+req.params["id"])) {
+    try {
+      let data = await DeviceService.delete(+req.params["id"]);
+      res.status(200).send(data);
+    } catch (e) {
+      res.status(500).send(e.message);
+    }
+  } else {
+    res.status(400).send("This device does not exists in the database");
+  }
+});
+
 export default DevicesRouter;

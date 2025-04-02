@@ -12,7 +12,7 @@ CategoriesRouter.get("/", async (req, res) => {
 
 CategoriesRouter.post("/", async (req, res) => {
   let data = req.body;
-  let invalidMessage =  CategoriesService.isInvalid(data);
+  let invalidMessage = CategoriesService.isInvalid(data);
   if (invalidMessage) {
     res.status(400).send({ error: invalidMessage });
   } else {
@@ -23,8 +23,12 @@ CategoriesRouter.post("/", async (req, res) => {
 
 CategoriesRouter.delete("/:id", async (req, res) => {
   if (await CategoriesService.exists(+req.params["id"])) {
-    let data = await CategoriesService.delete(+req.params["id"]);
-    res.status(200).send(data);
+    try {
+      let data = await CategoriesService.delete(+req.params["id"]);
+      res.status(200).send(data);
+    } catch (e) {
+      res.status(500).send(e.message);
+    }
   } else {
     res.status(400).send("This category does not exists in the database");
   }

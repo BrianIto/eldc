@@ -15,9 +15,10 @@ const DeviceSchema = yup.object<Device>({
 });
 
 const DeviceService: IDeviceService = {
-  get: (skip, take) => table.findMany({ take, skip }),
+  get: (skip, take) => table.findMany({ take, skip, include: { category: true } }),
   create: (d) => table.create({ data: d }),
   delete: (id) => table.delete({ where: { id } }),
+  exists: (id) => table.findFirst({ where: { id } }),
   isInvalid: (c: Device) => {
     try {
       DeviceSchema.validateSync(c);
