@@ -13,5 +13,5 @@
     </div>
     <app-button (clicked)="clickNew()">New Category</app-button>
   </div>
-  <app-table-category [categoriesList]="categoryList" (createFirst)="clickNew()"></app-table-category>
+  <app-table-category (delete)="onDelete($event)" [categoriesList]="categoryList" (createFirst)="clickNew()"></app-table-category>
 </div>

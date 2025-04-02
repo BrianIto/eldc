@@ -2,6 +2,7 @@
   <dialog #dialogNew class="bg-secondary py-6 m-auto rounded-xl px-6 w-lg">
     <h1 class="text-xl text-white mb-2">New Device</h1>
     <app-form-device
+      [categories]="categories"
       (confirm)="onSubmitNew($event)"
       (cancel)="onCancelNew()"
     ></app-form-device>
@@ -14,6 +15,8 @@
     <app-button (clicked)="clickNew()">New Device</app-button>
   </div>
   <app-table-device
+    (delete)="onDelete($event)"
+    [deviceList]="deviceList"
     [deviceList]="deviceList"
     (createFirst)="clickNew()"
   ></app-table-device>

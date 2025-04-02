@@ -38,6 +38,7 @@ export class TableDeviceComponent {
 
   onConfirmDelete() {
     this.delete.emit({ id: this.deleteIdSelected });
+    this.dialogDelete.nativeElement.close();
   }
 
   onCreateFirst() {

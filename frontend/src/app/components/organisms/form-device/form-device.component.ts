@@ -38,7 +38,10 @@ export class FormDeviceComponent {
     e.preventDefault();
     this.formGroup.markAllAsTouched();
     if (this.formGroup.valid) {
-      this.confirm.emit(this.formGroup.value);
+      this.confirm.emit({
+        ...this.formGroup.value,
+        partNumber: +this.formGroup.value.partNumber!,
+      });
     }
   }
 

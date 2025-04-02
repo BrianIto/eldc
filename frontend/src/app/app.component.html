@@ -28,7 +28,18 @@
     </div>
   </header>
   <main class="lg:mx-12 mx-6 my-5 text-white">
-    <app-category-template *ngIf="selectedTab === 'Category'" />
-    <app-device-template *ngIf="selectedTab === 'Device'"/>
+    <app-category-template
+      [categoryList]="categories"
+      (new)="newCategory($event)"
+      (delete)="deleteCategory($event)"
+      *ngIf="selectedTab === 'Category'"
+    />
+    <app-device-template
+      (new)="newDevice($event)"
+      (delete)="deleteDevice($event)"
+      [categories]="categories"
+      [deviceList]="devices"
+      *ngIf="selectedTab === 'Device'"
+    />
   </main>
 </div>

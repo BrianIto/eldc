@@ -5,12 +5,14 @@
 >
   <app-select
     label="Category"
+    formControlName="category"
     [options]="convertToSelectList(categories, 'name')"
   >
   </app-select>
   <app-input-text
     formControlName="partNumber"
     [required]="true"
+    type="number"
     [showValidation]="true"
     [errorMessages]="{
       required: 'Part Number is required',
