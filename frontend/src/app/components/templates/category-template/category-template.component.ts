@@ -10,8 +10,7 @@ import { TableCategoryComponent } from '../../organisms/table-category/table-cat
   templateUrl: './category-template.component.html',
 })
 export class CategoryTemplateComponent {
-
-  @Input() categoryList = [{ name: "Categoria 1", id: 1}]
+  @Input() categoryList = [{ name: 'Categoria 1', id: 1 }];
 
   @ViewChild('dialogNew') dialogNew!: ElementRef<HTMLDialogElement>;
 

@@ -3,7 +3,10 @@
   class="pt-4 flex flex-col"
   [formGroup]="formGroup"
 >
-  <app-select label="Category" [options]="convertToSelectList(categories, 'name')">
+  <app-select
+    label="Category"
+    [options]="convertToSelectList(categories, 'name')"
+  >
   </app-select>
   <app-input-text
     formControlName="partNumber"

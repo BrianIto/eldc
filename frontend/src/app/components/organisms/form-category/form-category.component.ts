@@ -18,7 +18,6 @@ import { CheckIcon, LucideAngularModule } from 'lucide-angular';
 export class FormCategoryComponent implements OnInit {
   readonly CheckIcon = CheckIcon;
 
-  @Input() categories: { id: number; name: string }[] = [];
 
   @Output() cancel = new EventEmitter<void>();
 
@@ -41,5 +40,4 @@ export class FormCategoryComponent implements OnInit {
   onCancel() {
     this.cancel.emit();
   }
-
 }
